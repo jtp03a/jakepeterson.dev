@@ -27,6 +27,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('client/build'));
 
+app.get('*', function (req, res, next) {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 app.use('/api', publicRoutes);
 
