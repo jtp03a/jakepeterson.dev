@@ -34,25 +34,4 @@ router.delete('/contacts/delete/:id', async (req, res) => {
     }
 });
 
-router.get('/logs/byID/deleteitem/:id', async (req, res) => {
-    try {
-        const { sub } = req.user;
-        const foundLog = await Log.findOne({
-            userid: sub,
-            "logItems._id": req.params.id
-        })
-        await foundLog.logItems.id(req.params.id).remove();
-        await foundLog.save();
-        res.send('Item Deleted');
-    } catch (err) {
-        console.log(err);
-    }
-})
-
-
-
-
-
-
-
 module.exports = router;

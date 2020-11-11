@@ -33,6 +33,8 @@ app.get('*', function (req, res, next) {
 
 app.use('/api', publicRoutes);
 
+app.use('/api/private/', privateRoutes);
+
 // const attachUser = (req, res, next) => {
 //     const token = req.cookies.token;
 //     if (!token) {
@@ -73,7 +75,7 @@ app.get('/api/csrf-token', (req, res) => {
 //     next();
 // }
 
-app.use('/api/private/', checkJwt, privateRoutes);
+
 
 mongoose
     .connect(process.env.MONGODB_URL, {
