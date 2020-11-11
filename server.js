@@ -33,23 +33,23 @@ app.get('*', function (req, res, next) {
 
 app.use('/api', publicRoutes);
 
-const attachUser = (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) {
-        return res.status(401).json({ message: 'Authentication Invalid' })
-    }
+// const attachUser = (req, res, next) => {
+//     const token = req.cookies.token;
+//     if (!token) {
+//         return res.status(401).json({ message: 'Authentication Invalid' })
+//     }
 
-    const decodedToken = jwtDecode(token);
+//     const decodedToken = jwtDecode(token);
 
-    if (!decodedToken) {
-        return res.status(401).json({ message: 'There was a problem authorizing the request' })
-    } else {
-        req.user = decodedToken;
-        next()
-    }
-};
+//     if (!decodedToken) {
+//         return res.status(401).json({ message: 'There was a problem authorizing the request' })
+//     } else {
+//         req.user = decodedToken;
+//         next()
+//     }
+// };
 
-app.use(attachUser);
+// app.use(attachUser);
 
 const checkJwt = jwt({
     secret: process.env.JWT_SECRET,
@@ -65,13 +65,13 @@ app.get('/api/csrf-token', (req, res) => {
     res.json({ csrfToken: req.csrfToken() })
 });
 
-const requireAdmin = (req, res, next) => {
-    const { role } = req.user;
-    if (role !== 'admin') {
-        return res.status(401).json({ message: 'Insufficient role' });
-    }
-    next();
-}
+// const requireAdmin = (req, res, next) => {
+//     const { role } = req.user;
+//     if (role !== 'admin') {
+//         return res.status(401).json({ message: 'Insufficient role' });
+//     }
+//     next();
+// }
 
 app.use('/api/private/', checkJwt, privateRoutes);
 
@@ -82,9 +82,5 @@ mongoose
         useFindAndModify: false,
     })
     .then(() => console.log('mongoDB connected...'));
-
-app.get('*', function (req, res, next) {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
 
 module.exports = app;
