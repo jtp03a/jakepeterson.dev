@@ -58,7 +58,7 @@ function ContactList() {
                         </div>
                         <div className="card-body">
                             <ul className="list-group">
-                                {contacts &&
+                                {/* {contacts &&
                                     contacts.map((contact, index) => (
                                         <li
                                             className={
@@ -69,7 +69,7 @@ function ContactList() {
                                         >
                                             {contact.email}
                                         </li>
-                                    ))}
+                                    ))} */}
                             </ul>
                         </div>
                     </div>
