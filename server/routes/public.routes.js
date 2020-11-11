@@ -55,77 +55,77 @@ router.post('/auth/login', async (req, res) => {
   }
 });
 
-router.post('/auth/signup', async (req, res) => {
-  try {
-    const { firstname, lastname, email, username } = req.body
+// router.post('/auth/signup', async (req, res) => {
+//   try {
+//     const { firstname, lastname, email, username } = req.body
 
-    const hashedPassword = await hashPassword(req.body.password);
+//     const hashedPassword = await hashPassword(req.body.password);
 
-    const userData = {
-      email: email.toLowerCase(),
-      firstname,
-      lastname,
-      username,
-      password: hashedPassword,
-      role: 'admin'
-    };
+//     const userData = {
+//       email: email.toLowerCase(),
+//       firstname,
+//       lastname,
+//       username,
+//       password: hashedPassword,
+//       role: 'admin'
+//     };
 
-    const existingEmail = await User.findOne({
-      email: userData.email,
-    }).lean();
+//     const existingEmail = await User.findOne({
+//       email: userData.email,
+//     }).lean();
 
-    const existingUsername = await User.findOne({
-      username: userData.username
-    }).lean();
+//     const existingUsername = await User.findOne({
+//       username: userData.username
+//     }).lean();
 
-    if (existingEmail) {
-      return res.status(400).json({ message: 'Email already exists' });
-    }
+//     if (existingEmail) {
+//       return res.status(400).json({ message: 'Email already exists' });
+//     }
 
-    if(existingUsername) {
-      return res.status(400).json({ message: 'Username already exists'});
-    }
+//     if(existingUsername) {
+//       return res.status(400).json({ message: 'Username already exists'});
+//     }
 
-    const newUser = new User(userData);
-    const savedUser = await newUser.save();
+//     const newUser = new User(userData);
+//     const savedUser = await newUser.save();
 
-    if (savedUser) {
-      const token = createToken(savedUser);
-      const tokenDecoded = jwtDecode(token);
-      const tokenExpiration = tokenDecoded.exp;
+//     if (savedUser) {
+//       const token = createToken(savedUser);
+//       const tokenDecoded = jwtDecode(token);
+//       const tokenExpiration = tokenDecoded.exp;
 
-      const {
-        firstname,
-        lastname,
-        email,
-        role,
-        username
-      } = savedUser;
+//       const {
+//         firstname,
+//         lastname,
+//         email,
+//         role,
+//         username
+//       } = savedUser;
 
-      const userInfo = {
-        firstname,
-        lastname,
-        email,
-        role,
-        username
-      };
+//       const userInfo = {
+//         firstname,
+//         lastname,
+//         email,
+//         role,
+//         username
+//       };
 
-      res.cookie('token', token, { httpOnly: true });
+//       res.cookie('token', token, { httpOnly: true });
 
-      return res.json({
-        message: 'User created',
-        token,
-        userInfo,
-        tokenExpiration
-      })
-    } else {
-      return res.status(400).json({ message: 'There was a problem creating your account' })
-    }
-  } catch (err) {
-    console.log(err);
-    return res.status(400).json({ message: 'There was a problem creating your account' });
-  }
-})
+//       return res.json({
+//         message: 'User created',
+//         token,
+//         userInfo,
+//         tokenExpiration
+//       })
+//     } else {
+//       return res.status(400).json({ message: 'There was a problem creating your account' })
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(400).json({ message: 'There was a problem creating your account' });
+//   }
+// })
 
 router.post('/contact', async (req, res) => {
   try {
