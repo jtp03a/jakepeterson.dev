@@ -1,0 +1,120 @@
+  
+:root {
+  --off-white: #fafafa;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+html,body{
+  height: 100%;
+}
+
+.nav {
+  background-color: #5AB9EA;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-logo {
+  height: 60px;
+  width: 60px;
+}
+
+.nav-logo:hover {
+  cursor: pointer;
+}
+
+.nav .nav-content {
+  max-width: 900px;
+  padding: 0rem 3rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item {
+  display: inline;
+  color: white;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 28px;
+}
+
+.nav-item:hover {
+  color: black;
+  cursor: pointer;
+}
+
+li.nav-item.active{
+  color:white;
+}
+
+.section-dark {
+  background:  #5AB9EA;
+  color: white;
+}
+
+.section-light {
+  background: #C1C8E4;
+}
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.nav-item > .active {
+  border-bottom: 1px solid #333;
+}
+
+#cardLabel{
+  color: black;
+}
+
+#cardHeader{
+  background-color: #5AB9EA;
+  color: white;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+#cardBody{
+  font-family: 'Roboto', sans-serif;
+}
+
+#homesection{
+  background-image: url('./Images/snow.jpg');
+  min-height:100vh;
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+
+#natasiabrand{
+  font-family: 'Great Vibes', cursive;
+  font-size: 55px;
+  color: white
+}
+
+#quote{
+  color: white;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 60px;
+}
+
+#quotecontainer {
+  background-color: rgb(90,185,234,0.6) !important;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+#portfolioCard {
+  width: 600px
+}
+
+
