@@ -1,10 +1,11 @@
 import React from 'react';
-import axiosContext from '../context/AxiosContext'
 import ContactList from './ContactList';
+import PrivateNavbar from './PrivateNavbar';
 
 function Private() {
     return (
         <div>
+            <PrivateNavbar />
             <ContactList />
         </div>
     )

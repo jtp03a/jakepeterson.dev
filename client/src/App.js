@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './App.css';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 import { AxiosProvider } from './context/AxiosContext';
@@ -7,6 +7,14 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import Login from './Components/Login';
 import Public from './Components/Public';
 import Private from './Components/Private'
+
+const AuthenticatedRoute = ({ children }) => {
+  const authContext = useContext(AuthContext);
+  if (!authContext.isAuthenticated()) {
+    return <Redirect to={'/login'} />;
+  }
+  return children;
+}
 
 const Routes = () => {
   return (
@@ -17,9 +25,9 @@ const Routes = () => {
       <Route exact path='/login'>
         <Login />
       </Route>
-      <Route exact path='/private'>
+      <AuthenticatedRoute exact path='/private'>
         <Private />
-      </Route>
+      </AuthenticatedRoute>
     </Switch>
   );
 }
