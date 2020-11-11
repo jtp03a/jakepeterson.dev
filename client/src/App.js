@@ -25,9 +25,9 @@ const Routes = () => {
       <Route exact path='/login'>
         <Login />
       </Route>
-      <AuthenticatedRoute exact path='/private'>
+      <Route exact path='/private'>
         <Private />
-      </AuthenticatedRoute>
+      </Route>
     </Switch>
   );
 }
