@@ -27,8 +27,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('client/build'));
 
-
-
 app.use('/api', publicRoutes);
 
 const attachUser = (req, res, next) => {
