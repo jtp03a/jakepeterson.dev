@@ -27,6 +27,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('client/build'));
 
+app.get('*', function (req, res, next) {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
 app.use('/api', publicRoutes);
 
 const attachUser = (req, res, next) => {
@@ -70,10 +74,6 @@ app.get('/api/csrf-token', (req, res) => {
 // }
 
 app.use('/api/private/', checkJwt, privateRoutes);
-
-app.get('*', function (req, res, next) {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
 
 mongoose
     .connect(process.env.MONGODB_URL, {

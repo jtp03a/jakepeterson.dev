@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { AxiosContext } from '../context/AxiosContext';
 import { createClient } from 'pexels';
 import draftToHtml from 'draftjs-to-html';
+import DOMPurify from 'dompurify';
 
 function Post(props) {
     const axiosContext = useContext(AxiosContext);
@@ -48,7 +49,7 @@ function Post(props) {
 
                     <div className="">
                     {image && <img src={image.src.large} className="d-block w-100" />}
-                    {post && <div className="mt-2" dangerouslySetInnerHTML={{__html: draftToHtml(JSON.parse(post.post))}} />}
+                    {post && <div className="mt-2" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(draftToHtml(JSON.parse(post.post)))}} />}
                     </div>
                 </div>
                 </div>
