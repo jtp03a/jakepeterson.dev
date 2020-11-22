@@ -27,9 +27,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('client/build'));
 
-app.get('*', function (req, res, next) {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
+
 
 app.use('/api', publicRoutes);
 
@@ -82,5 +80,9 @@ mongoose
         useFindAndModify: false,
     })
     .then(() => console.log('mongoDB connected...'));
+
+    app.get('*', function (req, res, next) {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
 
 module.exports = app;
