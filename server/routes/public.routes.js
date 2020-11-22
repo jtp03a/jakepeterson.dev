@@ -4,6 +4,7 @@ const User = require('../models/user.model');
 const Contact = require('../models/contact.model');
 const jwtDecode = require('jwt-decode');
 const { createToken, hashPassword, verifyPassword } = require('./../utilities');
+const Post = require('../models/post.model');
 
 router.post('/auth/login', async (req, res) => {
   try {
@@ -127,7 +128,7 @@ router.post('/auth/login', async (req, res) => {
 //   }
 // })
 
-router.post('/contact', async (req, res) => {
+router.post('/contacts', async (req, res) => {
   try {
      const newContact = new Contact({
        firstname: req.body.firstname,
@@ -143,5 +144,35 @@ router.post('/contact', async (req, res) => {
     return res.status(400).json({ message: 'There was a problem submitting your contact info '});
   }
 })
+
+router.get('/posts', async (req, res) => {
+  try {
+      const foundPosts = await Post.find().sort({ date: 'desc' }).limit(3);
+      res.send(foundPosts);
+  } catch (err) {
+      console.log(err);
+  }
+});
+
+router.get('/posts/:id', async (req, res) => {
+  try {
+      const foundPost = await Post.findOne({
+          _id: req.params.id
+      })
+      .populate('author')
+      res.send({
+        _id: foundPost._id,
+        postTitle: foundPost.postTitle,
+        post: foundPost.post,
+        postImage: foundPost.postImage,
+        date: foundPost.date,
+        author: { firstname: foundPost.author.firstname,
+                 lastname: foundPost.author.lastname },
+        tags: foundPost.tags
+      });
+  } catch (err) {
+      console.log(err);
+  }
+});
 
 module.exports = router;

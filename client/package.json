@@ -1,5 +1,4 @@
 {
-  
   "name": "client",
   "homepage": "https://natasia.herokuapp.com/",
   "version": "0.1.0",
@@ -10,10 +9,14 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.2",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
     "formik": "^2.2.3",
+    "pexels": "^1.0.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
+    "react-draft-wysiwyg": "^1.14.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "react-scroll": "^1.8.1",

@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
       tokenExpiration: null
     })
 
-    history.push('/login');
+    history.push('/');
   }
 
   const isAdmin = () => {

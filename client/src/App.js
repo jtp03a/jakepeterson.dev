@@ -3,10 +3,11 @@ import './App.css';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 import { AxiosProvider } from './context/AxiosContext';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-
 import Login from './Components/Login';
-import Public from './Components/Public';
-import Private from './Components/Private'
+import Home from './Components/Home';
+import Private from './Components/Private';
+import Navbar from './Components/Navbar';
+import Post from './Components/Post';
 
 const AuthenticatedRoute = ({ children }) => {
   const authContext = useContext(AuthContext);
@@ -18,17 +19,23 @@ const AuthenticatedRoute = ({ children }) => {
 
 const Routes = () => {
   return (
-    <Switch>
-      <Route exact path='/'>
-        <Public />
-      </Route>
-      <Route exact path='/login'>
-        <Login />
-      </Route>
-      <AuthenticatedRoute exact path='/private'>
-        <Private />
-      </AuthenticatedRoute>
-    </Switch>
+    <div>
+      <Navbar />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route exact path='/posts/:postID'>
+          <Post />
+        </Route>
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+        <AuthenticatedRoute exact path='/private'>
+          <Private />
+        </AuthenticatedRoute>
+      </Switch>
+    </div>
   );
 }
 

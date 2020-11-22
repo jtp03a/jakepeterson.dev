@@ -27,27 +27,25 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('client/build'));
 
-
-
 app.use('/api', publicRoutes);
 
-// const attachUser = (req, res, next) => {
-//     const token = req.cookies.token;
-//     if (!token) {
-//         return res.status(401).json({ message: 'Authentication Invalid' })
-//     }
+const attachUser = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ message: 'Authentication Invalid' })
+    }
 
-//     const decodedToken = jwtDecode(token);
+    const decodedToken = jwtDecode(token);
 
-//     if (!decodedToken) {
-//         return res.status(401).json({ message: 'There was a problem authorizing the request' })
-//     } else {
-//         req.user = decodedToken;
-//         next()
-//     }
-// };
+    if (!decodedToken) {
+        return res.status(401).json({ message: 'There was a problem authorizing the request' })
+    } else {
+        req.user = decodedToken;
+        next()
+    }
+};
 
-// app.use(attachUser);
+app.use(attachUser);
 
 const checkJwt = jwt({
     secret: process.env.JWT_SECRET,

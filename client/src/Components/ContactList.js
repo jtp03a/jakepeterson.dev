@@ -53,7 +53,7 @@ function ContactList() {
                 <div className="row">
                 <div className="col-md-6">
                     <div className="card">
-                        <div className="card-header">
+                        <div className="card-header" id="cardHeader">
                             <h3>Contacts</h3>
                         </div>
                         <div className="card-body">
@@ -76,7 +76,8 @@ function ContactList() {
                 </div>
                 <div className="col-md-6">
                     {selectedContact ? (
-                        <div>
+                        <div className="card">
+                            <div className="card-body"> 
                             <div>
                                 <label>
                                     <strong>Name:</strong>
@@ -107,6 +108,7 @@ function ContactList() {
                             </div>
                             <div className="mt-1">
                                 {message}
+                            </div>
                             </div>
                         </div>
                     ) : (

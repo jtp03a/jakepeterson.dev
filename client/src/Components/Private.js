@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ContactList from './ContactList';
-import PrivateNavbar from './PrivateNavbar';
+import AddPost from './AddPost';
+import PostEditor from './PostEditor';
 
 function Private() {
+    
     return (
         <div>
-            <PrivateNavbar />
             <ContactList />
+            <AddPost />
         </div>
     )
 }

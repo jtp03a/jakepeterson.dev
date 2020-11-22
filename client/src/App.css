@@ -9,6 +9,7 @@ ul {
 
 html,body{
   height: 100%;
+  background-color: #C1C8E4;
 }
 
 .nav {
@@ -24,6 +25,11 @@ html,body{
 .nav-logo {
   height: 60px;
   width: 60px;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
 .nav-logo:hover {

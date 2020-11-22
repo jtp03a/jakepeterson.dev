@@ -15,7 +15,7 @@ function Contact(props) {
 
     const submitContactInfo = async contactInfo => {
         try {
-            const { data } = await publicService.post(`contact`, contactInfo);
+            const { data } = await publicService.post(`contacts`, contactInfo);
             console.log(data);
             setSubmitSuccess(data.message);
         } catch (error) {
