@@ -2,15 +2,13 @@ import React, { useContext, useState } from 'react';
 import { AxiosContext } from '../context/AxiosContext';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import { raw } from 'body-parser';
 
 function AddPost() {
     const initialPost = {
         postTitle: '',
         postImage: '',
         post: {},
-        tags: [{ tagName: 'test 1' }, { tagName: 'test 2' }]
+        tags: [{ tagName: 'Tag 1' }, { tagName: 'Tag 2' }]
     }
 
     const axiosContext = useContext(AxiosContext);
@@ -18,7 +16,7 @@ function AddPost() {
     const [editorState, setEditorState] = useState(
         () => EditorState.createEmpty(),
     )
-    const [rawPost, setRawPost] = useState()
+    const [message, setMessage] = useState()
 
     const convertJSON = () => {
         setPost(prevState => {
@@ -27,9 +25,12 @@ function AddPost() {
         })
     }
 
-    const submitPost = async (newPost) => {
+    const submitPost = async () => {
         try {
             const { data } = await axiosContext.authAxios.post('./private/posts', post);
+            setMessage(data.message)
+            setPost(initialPost)
+            setEditorState(() => EditorState.createEmpty())
         } catch (err) {
             console.log(err);
         }
@@ -49,32 +50,35 @@ function AddPost() {
                 </div>
                 <div className="card-body">
                     <div className="form-group">
-                        <label htmlFor="postTitle">Post Title</label>
-                        <input className="form-control" id="postTitle" name="postTitle" onChange={handleInputChange} />
+                        <label htmlFor="postTitle"><strong>Post Title:</strong></label>
+                        <input className="form-control" id="postTitle" name="postTitle" value={post.postTitle} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="postImage">Post Image</label>
-                        <input className="form-control" id="postImage" name="postImage" onChange={handleInputChange} />
+                        <label htmlFor="postImage"><strong>Post Image:</strong></label>
+                        <input className="form-control" id="postImage" name="postImage" value={post.postImage} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="tags">Post Tags</label>
-                        <input className="form-control" id="tags" name="tags" onChange={handleInputChange} />
+                        <label htmlFor="tags"><strong>Post Tags:</strong></label>
+                        {/* <input className="form-control" id="tags" name="tags" onChange={handleInputChange} /> */}
                     </div>
                     <div className="form-group">
-                        <label htmlFor="post">Post</label>
+                        <label htmlFor="post"><strong>Post:</strong></label>
                         <Editor
                             editorState={editorState}
-                            wrapperClassName="rich-editor demo-wrapper"
-                            editorClassName="demo-editor"
+                            wrapperClassName="rich-editor"
+                            editorClassName="rich-editor"
                             onEditorStateChange={setEditorState}
                             onBlur={convertJSON}
-                            placeholder="Type your post here" />
+                            placeholder="Type your post here" 
+                             />
                     </div>
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center form-group">
                         <button type="submit" className="btn btn-primary mt-2" onClick={submitPost}>
                             Submit
                         </button>
-
+                    </div>
+                    <div className="d-flex justify-content-center form-group"> 
+                        <h4 className="mt-2">{message}</h4>
                     </div>
                 </div>
             </div>

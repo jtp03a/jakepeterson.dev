@@ -37,6 +37,15 @@ router.delete('/contacts/delete/:id', async (req, res) => {
 });
 
 //Private routes for managing blog posts
+router.get('/posts/all', async (req, res) => {
+    try {
+        const foundPosts = await Post.find().sort({date: 'desc'})
+        res.send(foundPosts);
+    } catch (err) {
+        console.log(err);
+    }
+  });
+
 router.post('/posts', async (req, res) => {
     const { sub } = req.user;
     try {
@@ -55,5 +64,35 @@ router.post('/posts', async (req, res) => {
         return res.status(400).json({ message: 'There was a problem submitting your post' });
     }
 })
+
+router.patch('/posts/update/:id', async (req, res) => {
+    try {
+        const foundPost = await Post.findOneAndUpdate({
+            _id: req.params.id
+        }, { $set: { 
+            postTitle: req.body.postTitle,
+            post: req.body.post,
+            postImage: req.body.postImage,
+            date: new Date(),
+            tags: req.body.tags 
+        } }
+        );
+        res.send({ message: 'Your post successfully updated' })
+    } catch (err) {
+        console.log(err);
+        return res.status(400).json({ message: 'There was a problem updating your post' });
+    }
+})
+
+router.delete('/posts/delete/:id', async (req, res) => {
+    try {
+        const foundPost = await Post.findOneAndDelete({
+            _id: req.params.id
+        });
+        res.send('Post Deleted')
+    } catch (err) {
+        console.log(err);
+    }
+});
 
 module.exports = router;

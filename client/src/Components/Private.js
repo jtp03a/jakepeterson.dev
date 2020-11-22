@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ContactList from './ContactList';
 import AddPost from './AddPost';
-import PostEditor from './PostEditor';
+import PostList from './PostList';
 
 function Private() {
     
@@ -9,6 +9,7 @@ function Private() {
         <div>
             <ContactList />
             <AddPost />
+            <PostList />
         </div>
     )
 }

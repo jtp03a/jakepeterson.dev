@@ -123,4 +123,8 @@ li.nav-item.active{
   width: 600px
 }
 
+.rich-editor {
+  border: 1px solid #ccc;
+}
+
 
