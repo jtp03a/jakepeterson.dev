@@ -79,7 +79,7 @@ mongoose
     })
     .then(() => console.log('mongoDB connected...'));
 
-    app.get('*', function (req, res, next) {
+    app.get('/*', function (req, res, next) {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 

@@ -5,6 +5,7 @@ import Landing from './Landing';
 import Contact from './Contact';
 import Portfolio from './Portfolio';
 import About from './About'
+import { Link as RouterLink } from 'react-router-dom';
 
 function Home() {
     return (
@@ -31,6 +32,9 @@ function Home() {
             subtitle={dummyText}
             id="section5"
           />
+          <div className="d-flex justify-content-center">
+            <RouterLink to='/Login'>Admin</RouterLink>
+          </div>
         </div>
     )
 }

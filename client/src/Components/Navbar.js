@@ -9,7 +9,7 @@ function Navbar () {
         return (
             <nav className="nav" id="navbar p-0">
                 <div className="col">
-                <a class="navbar-brand ml-2" href="/" id="natasiabrand">Natasia Peterson</a>
+                <a class="navbar-brand ml-2" href="/" id="natasiabrand">Your Name Here</a>
                 </div>
                 <div className="col m-auto p-0 d-flex justify-content-center">
                     <ul className="nav-items">

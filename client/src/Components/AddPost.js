@@ -54,12 +54,8 @@ function AddPost() {
                         <input className="form-control" id="postTitle" name="postTitle" value={post.postTitle} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="postImage"><strong>Post Image:</strong></label>
+                        <label htmlFor="postImage"><strong>Post Image: (Use the ID of an image from pexels.com)</strong></label>
                         <input className="form-control" id="postImage" name="postImage" value={post.postImage} onChange={handleInputChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="tags"><strong>Post Tags:</strong></label>
-                        {/* <input className="form-control" id="tags" name="tags" onChange={handleInputChange} /> */}
                     </div>
                     <div className="form-group">
                         <label htmlFor="post"><strong>Post:</strong></label>

@@ -113,12 +113,6 @@ function PostList() {
                                     </div>
                                     <div>
                                         <label>
-                                            <strong>Tags:</strong>
-                                        </label>{" "}
-                                        {/* {selectedPost.tags} */}
-                                    </div>
-                                    <div>
-                                        <label>
                                             <strong>Post:</strong>
                                         </label>{" "}
                                         <Editor
