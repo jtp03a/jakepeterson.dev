@@ -38,6 +38,7 @@
 <p>          role: 'admin',
 <p>          changepassword: true
 <p>        };
+<p>Only change the values for email, firstname, lastname, and username
 <h1>Running on local host</h1>
 <ol>
 <li>Open a terminal pointed to the root of the project and in the command prompt type npm install
