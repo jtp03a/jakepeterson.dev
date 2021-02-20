@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const jwt = require('express-jwt');
 const csrf = require('csurf');
 const bodyParser = require('body-parser');
+const { hashPassword } = require('./server/utilities');
+const User = require('./server/models/user.model');
 
 const publicRoutes = require('./server/routes/public.routes');
 const privateRoutes = require('./server/routes/private.routes');
@@ -25,6 +27,37 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('client/build'));
+
+const defaultUser = async (req, res, next) => {
+    try {
+        const defaultpass = 'password'
+        const hashedPassword = await hashPassword(defaultpass);
+    
+        const userData = {
+          email: 'admin@admin.com',
+          firstname: 'admin',
+          lastname: 'admin',
+          username: 'admin',
+          password: hashedPassword,
+          role: 'admin',
+          changepassword: true
+        };
+     
+        const existingUsername = await User.findOne({
+          username: userData.username
+        }).lean();  
+    
+        if (!existingUsername) {
+            const newUser = new User(userData);
+            const savedUser = await newUser.save();
+        }
+      } catch (err) {
+        console.log(err);
+        return res.status(400).json({ message: 'There was a problem creating your account' });
+      }    
+};
+
+defaultUser()
 
 app.use('/api', publicRoutes);
 

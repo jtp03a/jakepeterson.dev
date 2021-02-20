@@ -13,19 +13,27 @@ const LoginSchema = Yup.object().shape({
 function Login() {
 
     const authContext = useContext(AuthContext);
-    const [loginSuccess, setLoginSucess] = useState();
-    const [loginError, setLoginError] = useState();
-    const [loginLoading, setLoginLoading] = useState(false);
     const [loginRedirect, setLoginRedirect] = useState(false);
+    const [passwordChangeSuccess, setPasswordChangeSuccess] = useState()
 
     const submitCredentials = async credentials => {
         try {
-            console.log(credentials);
             const { data } = await publicService.post(`auth/login`, credentials);
             authContext.setAuthState(data);
             setLoginRedirect(true);
         } catch (error) {
             const { data } = error.response;
+            if (data.passwordstatus) {
+                console.log('You need to change your password')
+                const passwordprompt = prompt('Enter a new password')
+                if (passwordprompt === null || passwordprompt === "") {
+                    console.log('You didnt enter anything')
+                } else {
+                    credentials.newpass = passwordprompt
+                    const { data } = await publicService.post(`auth/changepassword`, credentials);
+                    setPasswordChangeSuccess(data.message)
+                }
+            }
         }
     };
 
@@ -57,6 +65,9 @@ function Login() {
                                                 <button type="submit" className="btn btn-primary mt-2">
                                                     Submit
                                                 </button>
+                                            </div>
+                                            <div>
+                                                    {passwordChangeSuccess}
                                             </div>
                                         </div>
                                     </div>
