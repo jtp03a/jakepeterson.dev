@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { createClient } from 'pexels';
+import { publicService } from './../util/public.service';
 
 function PostTile(props) {
-    const client = createClient('563492ad6f91700001000001b9a332f548444ba4b34f7a37e76b75ba');
     const [image, setImage] = useState();
     useEffect(() => {
         getImage();
@@ -10,7 +9,7 @@ function PostTile(props) {
 
     const getImage = async () => {
         try {
-            const data = await client.photos.show({ id: props.postImage })
+            const { data } = await publicService.post('/pexelimages/', {pexelID: props.postImage});
             setImage(data)
         } catch (err) {
             console.log(err);

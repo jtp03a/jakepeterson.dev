@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AxiosContext } from '../context/AxiosContext';
-import { createClient } from 'pexels';
 import draftToHtml from 'draftjs-to-html';
 import DOMPurify from 'dompurify';
+import { publicService } from './../util/public.service';
+import { HomeContext } from '../context/HomeContext'
 
 function Post(props) {
     const axiosContext = useContext(AxiosContext);
+    const homeContext = useContext(HomeContext)
     const { postID } = useParams();
     const [post, setPost] = useState();
     const [image, setImage] = useState();
 
-    const client = createClient('563492ad6f91700001000001b9a332f548444ba4b34f7a37e76b75ba');
-
     useEffect(() => {
         getPost();
+        homeContext.setAwayHome();
     }, []);
 
     const getPost = async () => {
@@ -29,7 +30,7 @@ function Post(props) {
 
     const getImage = async (pexelID) => {
         try {
-            const data = await client.photos.show({ id: pexelID })
+            const { data } = await publicService.post('/pexelimages/', {pexelID: pexelID});
             setImage(data)
         } catch (err) {
             console.log(err);

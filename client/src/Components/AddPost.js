@@ -41,7 +41,6 @@ function AddPost() {
         setPost({ ...post, [name]: value });
     };
 
-
     return (
         <div className="container mt-5">
             <div className="card">

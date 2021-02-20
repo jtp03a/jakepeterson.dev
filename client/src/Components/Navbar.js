@@ -2,16 +2,19 @@ import React, { useContext }  from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 import { AuthContext } from '../context/AuthContext';
 import { Link as RouterLink } from 'react-router-dom';
+import { HomeContext } from '../context/HomeContext'
 
 function Navbar () {
         const authContext = useContext(AuthContext);
+        const homeContext = useContext(HomeContext)
 
         return (
             <nav className="nav" id="navbar p-0">
-                <div className="col">
+                <div className="col pb-1">
                 <a class="navbar-brand ml-2" href="/" id="natasiabrand">Your Name Here</a>
                 </div>
                 <div className="col m-auto p-0 d-flex justify-content-center">
+                    {homeContext.isHome() ? (
                     <ul className="nav-items">
                         <li className="nav-item mr-5" id="scrolllink">
                             <Link
@@ -65,6 +68,7 @@ function Navbar () {
                             >Blog</Link>
                         </li>
                     </ul>
+                    ) : ("")}
                 </div>
                 <div className="col d-flex justify-content-end">
                     {authContext.isAuthenticated() ? (

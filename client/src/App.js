@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './App.css';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 import { AxiosProvider } from './context/AxiosContext';
+import { HomeContext, HomeProvider } from './context/HomeContext'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import Login from './Components/Login';
 import Home from './Components/Home';
@@ -44,7 +45,9 @@ function App() {
     <Router>
       <AuthProvider>
         <AxiosProvider>
-          <Routes />
+          <HomeProvider>
+            <Routes />
+          </HomeProvider>
         </AxiosProvider>
       </AuthProvider>
     </Router>
