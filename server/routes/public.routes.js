@@ -228,7 +228,7 @@ router.get('/posts/:id', async (req, res) => {
 
 router.post('/pexelimages', async (req, res) => {
   try {
-    const client = pexels.createClient(process.env.PEXELKEY);
+    const client = pexels.createClient('563492ad6f91700001000001b9a332f548444ba4b34f7a37e76b75ba');
     const data = await client.photos.show({ id: req.body.pexelID })
     res.send(data)
   } catch (err) {
