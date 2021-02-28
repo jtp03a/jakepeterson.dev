@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: peterson-apps-cert
+spec:
+  domains:
+    - www.jakepeterson.dev
+    - jakepeterson.dev

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: jpeterson-dev-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: jpeterson-dev-address
+    networking.gke.io/managed-certificates: peterson-apps-cert
+    kubernetes.io/ingress.class: "gce"
+spec:
+  backend:
+    serviceName: jpeterson-dev-service
+    servicePort: 4000
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: "jpeterson-dev-service"
+          servicePort: 4000
+    host: "jakepeterson.dev"

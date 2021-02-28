@@ -21,7 +21,7 @@ deploy:
     - gcloud container clusters get-credentials jp-ap-cluster-1 --zone=us-central1
     - echo $MONGODB_CONN > dbconn.txt
     - echo $JWT_SECRET > jwtsecret.txt
-    - echo $PEXE_KEY > pexelkey.txt
+    - echo $PEXEL_KEY > pexelkey.txt
     - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt
     - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt
     - kubectl create secret generic pexel-secrets --from-file=pexel_key=./pexelkey.txt
