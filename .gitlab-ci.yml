@@ -23,7 +23,7 @@ deploy:
     - echo $JWT_SECRET > jwtsecret.txt
     - echo $PEXE_KEY > pexelkey.txt
     - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt
-    - kubectl create secret generic jwt-secrets --from-file=jwt_seceret=./jwtsecret.txt
+    - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt
     - kubectl create secret generic pexel-secrets --from-file=pexel_key=./pexelkey.txt
     - kubectl apply -f service.yaml
     - kubectl apply -f jpeterson-dev-deploy.yaml
