@@ -26,4 +26,4 @@ deploy:
     - kubectl create secret generic jwt-secrets --from-file=jwt_seceret=./jwtsecret.txt
     - kubectl create secret generic pexel-secrets --from-file=pexel_key=./pexelkey.txt
     - kubectl apply -f service.yaml
-    - kubectl apply -f deploy-mern-test.yaml
+    - kubectl apply -f jpeterson-dev-deploy.yaml
