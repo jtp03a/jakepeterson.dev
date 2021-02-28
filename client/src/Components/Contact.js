@@ -56,7 +56,7 @@ function Contact(props) {
                                     <Field as="textarea" className="form-control" id="message" name="message" rows="4" placeholder="Type your message" />
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                    <button type="submit" className="btn btn-primary mt-2">
+                                    <button type="submit" id="contactSubmit" className="btn btn-primary mt-2">
                                         Submit
                                     </button>
 

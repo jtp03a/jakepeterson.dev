@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { publicService } from './../util/public.service';
 import { AuthContext } from './../context/AuthContext';
 import { Redirect } from 'react-router-dom';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { HomeContext } from '../context/HomeContext'
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
@@ -15,6 +16,12 @@ function Login() {
     const authContext = useContext(AuthContext);
     const [loginRedirect, setLoginRedirect] = useState(false);
     const [passwordChangeSuccess, setPasswordChangeSuccess] = useState()
+
+    const homeContext = useContext(HomeContext)
+
+    useEffect(() => {
+      homeContext.setAwayHome();
+    }, []);
 
     const submitCredentials = async credentials => {
         try {

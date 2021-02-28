@@ -7,6 +7,7 @@ import Portfolio from './Portfolio';
 import About from './About'
 import { Link as RouterLink } from 'react-router-dom';
 import { HomeContext } from '../context/HomeContext'
+import Navbar from './Navbar'
 
 function Home() {
   const homeContext = useContext(HomeContext)
@@ -27,7 +28,7 @@ function Home() {
         id="section2"
       />
       <Portfolio
-        title="My Work"
+        title="Experience"
         id="section3"
       />
       <Contact
@@ -40,7 +41,7 @@ function Home() {
         id="section5"
       />
       <div className="d-flex justify-content-center">
-        <RouterLink to='/Login'>Admin</RouterLink>
+        <RouterLink to='/Login' className="pl-1 pr-1 mb-1" id="adminLink">Admin</RouterLink>
       </div>
     </div>
   )
