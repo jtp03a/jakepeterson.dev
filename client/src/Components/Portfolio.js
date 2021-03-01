@@ -53,8 +53,8 @@ function Portfolio(props) {
                                                 <li className="list-group-item">July 2020-Jan 2021 - Lead Developer - USAF</li>
                                                 <li className="list-group-item">Nov 2018-Present - Cybersecurity Test Lead - USAF</li>
                                                 <li className="list-group-item">Jan 2018-Nov 2018 - Cybersecurity Student - USAF</li>
-                                                <li className="list-group-item">Jul 2018-Dec 2018 - Developer - USAF</li>
-                                                <li className="list-group-item">Sep 2015-Jul 2018 - Lead Intel Analyst - USAF</li>
+                                                <li className="list-group-item">Jul 2017-Dec 2017 - Developer - USAF</li>
+                                                <li className="list-group-item">Sep 2015-Jul 2017 - Lead Intel Analyst - USAF</li>
                                                 <li className="list-group-item">Sep 2012-Sep 2015 - Linguist - USAF</li>
                                                 <li className="list-group-item">Mar 2011-Sep 2012 - Linguist Student - USAF</li>
                                                 <li className="list-group-item">Jan 2009-Mar 2011 - Software Engineer<br></br>Hendrick Medical Center, Abilene TX</li>
