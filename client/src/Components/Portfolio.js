@@ -5,7 +5,7 @@ function Portfolio(props) {
     return (
         <div className="section section-light">
             <div className="section-content" id={props.id}>
-                <div className="card m-auto" id="portfolioCard">
+                <div className="card m-auto">
                     <div className="card-header" id="cardHeader">
                         <h1>{props.title}</h1>
                         <p>Hover mouse over slide to pause</p>
