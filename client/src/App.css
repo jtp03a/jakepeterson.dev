@@ -121,6 +121,8 @@ li.nav-item.active{
   min-height:100vh;
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
+  position: relative;
+  text-align: center;
 }
 
 #mainBrand{
@@ -176,15 +178,14 @@ li.nav-item.active{
   background-color: black;
 }
 
-#siteInfo{
+.siteInfo{
   color: white;
   background-color:rgba(0,0,0,0.5) !important;
   box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-#siteBox {
-  margin-top: 33vh
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #section1 {
