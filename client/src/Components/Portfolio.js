@@ -21,8 +21,8 @@ function Portfolio(props) {
                                             <ul className="list-group">
                                                 <li className="list-group-item">Javascript<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;</li>
                                                 <li className="list-group-item">HTML<br></br> &#9733;&#9733;&#9733;&#9733;&#9734;</li>
-                                                <li className="list-group-item ">CSS<br></br> &#9733;&#9733;&#9734;&#9734;&#9734;</li>
-                                                <li className="list-group-item">Bootstrap<br></br> &#9733;&#9733;&#9734;&#9734;&#9734;</li>
+                                                <li className="list-group-item ">CSS<br></br> &#9733;&#9733;&#9733;&#9734;&#9734;</li>
+                                                <li className="list-group-item">Bootstrap<br></br> &#9733;&#9733;&#9733;&#9734;&#9734;</li>
                                                 <li className="list-group-item">React<br></br> &#9733;&#9733;&#9733;&#9734;&#9734;</li>
                                                 <li className="list-group-item">Express.js<br></br> &#9733;&#9733;&#9733;&#9734;&#9734;</li>
                                                 <li className="list-group-item ">Node.js<br></br> &#9733;&#9733;&#9733;&#9734;&#9734;</li>
