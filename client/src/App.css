@@ -22,9 +22,35 @@ html,body{
   box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
 }
 
-.nav-logo {
-  height: 60px;
-  width: 60px;
+#topNavBar {
+  width: 100%;
+  position: relative
+}
+
+#navLinks {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+ #brandCol {
+  display: inline-block;
+  padding-left: 0;
+  padding-right: 0;
+  position: absolute;
+} 
+
+#endContent { 
+  position: absolute;
+  display: inline-block;
+  right: 0px
+} 
+
+#collapseBtn{
+  position: absolute;
+  right: 0px;
+  margin-right: 10px
 }
 
 a, a:hover, a:focus, a:active {
@@ -34,16 +60,6 @@ a, a:hover, a:focus, a:active {
 
 .nav-logo:hover {
   cursor: pointer;
-}
-
-.nav .nav-content {
-  max-width: 900px;
-  padding: 0rem 3rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
 }
 
 .nav-item {
@@ -186,11 +202,6 @@ li.nav-item.active{
   border-color: rgb(68, 71, 75)
 }
 
-#brandCol {
-
-  padding-left: 0;
-  padding-right: 0
-}
 
 .navbar-collapse.collapsing,
 .navbar-collapse.show {
@@ -198,9 +209,10 @@ li.nav-item.active{
   border-color: black;
   border: 1px;
   border-style: solid;
-  padding-bottom: 5px
+  padding-bottom: 5px;
+  margin-top: 60px;
 }
 
-#navBarUl {
-  margin-left: 6.5rem
-}
+
+
+

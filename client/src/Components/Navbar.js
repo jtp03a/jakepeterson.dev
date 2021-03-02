@@ -15,16 +15,17 @@ function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg nav navbar-dark" id="navbar">
-
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavBar" aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="col" id='brandCol'>
+        <nav className="navbar navbar-expand-xl nav navbar-dark" id="navbar">
+            <div id='brandCol'>
                 <a className="navbar-brand ml-2" href="/" id="mainBrand">Jake Peterson</a>
             </div>
-            <div className="collapse navbar-collapse justify-content-center" id="topNavBar">
+            <button id="collapseBtn" className="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavBar" aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="topNavBar">
                 {homeContext.isHome() ? (
+                    <div id="navLinks">
                     <ul className="navbar-nav" id="navBarUl">
                         <li className="nav-item" id="scrolllink">
                             <a className="nav-link" onClick={toTop}>Home</a>
@@ -75,9 +76,10 @@ function Navbar() {
                             >Blog</Link>
                         </li>
                     </ul>
+                    </div>
                 ) : ("")}
-                <div className="col d-flex justify-content-end">
-                <div>
+                <div id="endContent">
+                    <div>
                     <a href="https://github.com/jtp03a"><img  src={GHLogo} /></a>
                     <a className="ml-1" href="https://www.codewars.com/users/jtp03a"><img  src={CWLogo} /></a>
                     </div>
