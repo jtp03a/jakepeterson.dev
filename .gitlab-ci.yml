@@ -19,10 +19,10 @@ deploy:
     - gcloud auth activate-service-account --key-file gcloud-service-key.json
     - gcloud config set project $GCP_PROJECT_ID
     - gcloud container clusters get-credentials jp-dev --zone=us-central1-c
-    - kubectl delete deployment jpeterson-dev
-    - kubectl delete secret mongodb-secrets
-    - kubectl delete secret jwt-secrets
-    - kubectl delete secret pexel-secrets
+    # - kubectl delete deployment jpeterson-dev
+    # - kubectl delete secret mongodb-secrets
+    # - kubectl delete secret jwt-secrets
+    # - kubectl delete secret pexel-secrets
     - echo -n $MONGODB_CONN > dbconn.txt
     - echo -n $JWT_SECRET > jwtsecret.txt
     - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt
