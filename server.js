@@ -26,7 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use(express.static('client/build'));
+
+const isProd = process.env.NODE_ENV === 'production'
 
 const defaultUser = async (req, res, next) => {
     try {
@@ -61,29 +64,11 @@ defaultUser()
 
 app.use('/api', publicRoutes);
 
-const attachUser = (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) {
-        return res.status(401).json({ message: 'Authentication Invalid' })
-    }
-
-    const decodedToken = jwtDecode(token);
-
-    if (!decodedToken) {
-        return res.status(401).json({ message: 'There was a problem authorizing the request' })
-    } else {
-        req.user = decodedToken;
-        next()
-    }
-};
-
-app.use(attachUser);
-
 const checkJwt = jwt({
     secret: process.env.JWT_SECRET,
     algorithms: ['HS256'],
-    issuer: 'api.natasia',
-    audience: 'api.natasia',
+    issuer: 'api.jpeterson',
+    audience: 'api.jpeterson',
     getToken: req => req.cookies.token
 });
 
@@ -102,6 +87,24 @@ app.get('/api/csrf-token', (req, res) => {
 // }
 
 app.use('/api/private/', checkJwt, privateRoutes);
+
+const attachUser = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ message: 'Authentication Invalid' })
+    }
+
+    const decodedToken = jwtDecode(token);
+
+    if (!decodedToken) {
+        return res.status(401).json({ message: 'There was a problem authorizing the request' })
+    } else {
+        req.user = decodedToken;
+        next()
+    }
+};
+
+app.use(attachUser);
 
 mongoose
     .connect(process.env.MONGODB_URL, {
