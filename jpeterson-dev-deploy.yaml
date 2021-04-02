@@ -18,6 +18,8 @@ spec:
       - name: jpeterson-dev
         image: jtp03a/jpeterson-dev:latest
         env:
+        - name: NODE_ENV
+          value: "production"
         - name: MONGODB_URL
           valueFrom:
             secretKeyRef:

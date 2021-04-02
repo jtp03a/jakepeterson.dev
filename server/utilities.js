@@ -12,8 +12,8 @@ const createToken = user => {
       email: user.email,
       role: user.role,
       username: user.username,
-      iss: 'api.natasia',
-      aud: 'api.natasia'
+      iss: 'api.jpeterson',
+      aud: 'api.jpeterson'
     },
     process.env.JWT_SECRET,
     { algorithm: 'HS256', expiresIn: '1h' }
