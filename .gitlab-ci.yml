@@ -13,12 +13,21 @@ build:
     - docker push jtp03a/jpeterson-dev:latest
 deploy:
   stage: deploy
-  image: google/cloud-sdk
+  # image: google/cloud-sdk
+  image: jtp03a/kubectl:latest
   script:
-    - echo $GCP_SERVICE_KEY > gcloud-service-key.json
-    - gcloud auth activate-service-account --key-file gcloud-service-key.json
-    - gcloud config set project $GCP_PROJECT_ID
-    - gcloud container clusters get-credentials jp-ap-cluster-1 --zone=us-central1
+    # Connect to a GCP Cluster
+    # - echo $GCP_SERVICE_KEY > gcloud-service-key.json
+    # - gcloud auth activate-service-account --key-file gcloud-service-key.json
+    # - gcloud config set project $GCP_PROJECT_ID
+    # - gcloud container clusters get-credentials jp-ap-cluster-1 --zone=us-central1
+    # Connect to Home Cluster
+    - kubectl config set-cluster jake-k8s --server="${K8S_SERVER}"
+    - kubectl config set clusters.sst-jake-k8s.certificate-authority-data ${K8S_CAD}
+    - kubectl config set-credentials jake-k8s --token="${K8S_TOKEN}"
+    - kubectl config set-context jake-k8s --cluster=jake-k8s --user=admin
+    - kubectl config use-context jake-k8s
+    - kubectl config current-context
     - kubectl delete deployment jpeterson-dev
     - kubectl delete secret mongodb-secrets
     - kubectl delete secret jwt-secrets
