@@ -4,7 +4,7 @@ stages:
 image: docker:latest
 
 variables:
-  DOCKER_HOST: tcp://docker:2376
+  DOCKER_HOST: tcp://localhost:2376
 
 services:
   - docker:dind
