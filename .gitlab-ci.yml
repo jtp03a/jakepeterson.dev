@@ -6,6 +6,10 @@ build:
   image: docker:latest
   services:
   - name: docker:dind
+  variables:
+    DOCKER_DRIVER: overlay
+    DOCKER_HOST: tcp://localhost:2375
+
   script:
     - docker pull jtp03a/jpeterson-dev:latest || true
     - docker build --cache-from jtp03a/jpeterson-dev:latest --tag jtp03a/jpeterson-dev:latest .
