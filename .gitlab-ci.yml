@@ -7,7 +7,6 @@ build:
   services:
   - name: docker:dind
   script:
-    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker pull jtp03a/jpeterson-dev:latest || true
     - docker build --cache-from jtp03a/jpeterson-dev:latest --tag jtp03a/jpeterson-dev:latest .
     - docker push jtp03a/jpeterson-dev:latest
