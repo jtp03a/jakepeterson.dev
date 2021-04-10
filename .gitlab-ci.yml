@@ -9,6 +9,7 @@ services:
 build:
   stage: build
   script:
+    - docker login registry.jakepeterson.dev -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker build -t registry.jakepeterson.dev/jpeterson/jpeterson-dev .
     - docker push registry.jakepeterson.dev/jpeterson/jpeterson-dev
 # deploy:
