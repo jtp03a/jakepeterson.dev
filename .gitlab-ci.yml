@@ -1,6 +1,6 @@
 stages:
   - build
-  # - deploy
+  - deploy
 image: docker:latest
 
 services:
@@ -12,23 +12,24 @@ build:
     - echo ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
     - docker build -t registry.jakepeterson.dev/jpeterson/jpeterson-dev .
     - docker push registry.jakepeterson.dev/jpeterson/jpeterson-dev
-# deploy:
-  # stage: deploy
+deploy:
+  stage: deploy
   # image: google/cloud-sdk
   # image: jtp03a/kubectl:latest
-  # script:
+  script:
     # Connect to a GCP Cluster
     # - echo $GCP_SERVICE_KEY > gcloud-service-key.json
     # - gcloud auth activate-service-account --key-file gcloud-service-key.json
     # - gcloud config set project $GCP_PROJECT_ID
     # - gcloud container clusters get-credentials jp-ap-cluster-1 --zone=us-central1
     # Connect to Home Cluster
-    # - kubectl config set-cluster jake-k8s --server="${K8S_SERVER}"
-    # - kubectl config set clusters.sst-jake-k8s.certificate-authority-data ${K8S_CAD}
-    # - kubectl config set-credentials jake-k8s --token="${K8S_TOKEN}"
-    # - kubectl config set-context jake-k8s --cluster=jake-k8s --user=admin
-    # - kubectl config use-context jake-k8s
-    # - kubectl config current-context
+    - microk8s kubectl config set-cluster jake-k8s --server="${K8S_SERVER}"
+    - microk8s kubectl config set clusters.sst-jake-k8s.certificate-authority-data ${K8S_CAD}
+    - microk8s kubectl config set-credentials jake-k8s --token="${K8S_TOKEN}"
+    - microk8s kubectl config set-context jake-k8s --cluster=jake-k8s --user=admin
+    - microk8s kubectl config use-context jake-k8s
+    - microk8s kubectl config current-context
+    - microk8s kubectl get all --all-namespaces
     # - kubectl delete deployment jpeterson-dev
     # - kubectl delete secret mongodb-secrets
     # - kubectl delete secret jwt-secrets
