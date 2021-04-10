@@ -29,8 +29,7 @@ deploy:
     # - microk8s kubectl config set-context jake-k8s --cluster=jake-k8s --user=admin
     # - microk8s kubectl config use-context jake-k8s
     # - microk8s kubectl config current-context
-    - microk8s kubectl get all --all-namespaces
-    # - kubectl delete deployment jpeterson-dev
+    - microk8s kubectl delete deployment jpeterson-dev
     # - kubectl delete secret mongodb-secrets
     # - kubectl delete secret jwt-secrets
     # - kubectl delete secret pexel-secrets
@@ -40,4 +39,4 @@ deploy:
     # - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt
     # - kubectl create secret generic pexel-secrets --from-literal=pexel_key=${PEXEL_KEY}
     # - kubectl apply -f service.yaml
-    # - kubectl apply -f jpeterson-dev-deploy.yaml
+    - microk8s kubectl apply -f jpeterson-dev-deploy.yaml
