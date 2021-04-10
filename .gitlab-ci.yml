@@ -8,8 +8,8 @@ services:
 
 build:
   stage: build
-  script:
-    - docker login registry.jakepeterson.dev -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+  script: 
+    - cat -p ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
     - docker build -t registry.jakepeterson.dev/jpeterson/jpeterson-dev .
     - docker push registry.jakepeterson.dev/jpeterson/jpeterson-dev
 # deploy:
