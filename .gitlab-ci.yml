@@ -10,6 +10,7 @@ build:
   stage: build
   script: 
     - echo ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
+    - docker pull registry.jakepeterson.dev/jpeterson/jpeterson-dev || true
     - docker build -t registry.jakepeterson.dev/jpeterson/jpeterson-dev .
     - docker push registry.jakepeterson.dev/jpeterson/jpeterson-dev
 deploy:
