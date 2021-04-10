@@ -7,7 +7,7 @@ function Landing(props) {
 
             <div className="section-content" id={props.id}>
                 <div className="container p-2 rounded quotecontainer">
-                    <h2 className="p-2" id="quote">I am a Developer.</h2>
+                    <h2 className="p-2" id="quote">I Love Natasia.</h2>
                 </div>
             </div>
             <div className="siteInfo">
