@@ -1,17 +1,17 @@
 stages:
-  - build
+  # - build
   - deploy
 image: docker:latest
 
 services:
   - docker:dind
 
-build:
-  stage: build
-  script: 
-    - echo ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
-    - docker build -t registry.jakepeterson.dev/jpeterson/jpeterson-dev .
-    - docker push registry.jakepeterson.dev/jpeterson/jpeterson-dev
+# build:
+#   stage: build
+#   script: 
+#     - echo ${DOCKER_PASSWORD} | docker login registry.jakepeterson.dev --username ${DOCKER_USER} --password-stdin
+#     - docker build -t registry.jakepeterson.dev/jpeterson/jpeterson-dev .
+#     - docker push registry.jakepeterson.dev/jpeterson/jpeterson-dev
 deploy:
   stage: deploy
   # image: google/cloud-sdk
