@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-04-30T20:36:33.458Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="cD1Z_rHz3q-_HirQMH8s" version="14.6.9" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2021-04-30T20:37:31.219Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="NA3NorgiTdePVQVgohHF" version="14.6.9" type="gitlab">
   <diagram id="zbW5SF16q_hH_keQMrZR" name="Page-1">
     <mxGraphModel dx="1422" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="800" background="#CCCCCC" math="0" shadow="0">
       <root>
@@ -121,8 +121,8 @@
         <mxCell id="5j0_gLpahZADzYETyay1-20" value="Text" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="375" y="370" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="5j0_gLpahZADzYETyay1-21" value="Home Lab" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;spacing=2;fontSize=39;fontFamily=Garamond;" vertex="1" parent="1">
-          <mxGeometry x="310" width="180" height="60" as="geometry" />
+        <mxCell id="5j0_gLpahZADzYETyay1-21" value="&lt;font face=&quot;Tahoma&quot;&gt;Home Lab&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;spacing=2;fontSize=39;fontFamily=Garamond;" vertex="1" parent="1">
+          <mxGeometry x="305" width="190" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
