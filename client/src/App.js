@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './App.css';
+import './App.scss';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 import { AxiosProvider } from './context/AxiosContext';
 import { HomeContext, HomeProvider } from './context/HomeContext'
