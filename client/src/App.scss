@@ -1,0 +1,268 @@
+  
+:root {
+  --off-white: #fafafa;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+html,body{
+  height: 100%;
+  background-color: #a8aab5;
+}
+
+.nav {
+  background-color:rgb(68, 71, 75) !important;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+#topNavBar {
+  width: 100%;
+  position: relative
+}
+
+#navLinks {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+ #brandCol {
+  display: inline-block;
+  padding-left: 0;
+  padding-right: 0;
+  position: absolute;
+} 
+
+#endContent { 
+  position: absolute;
+  display: inline-block;
+  right: 0px
+} 
+
+#collapseBtn{
+  position: absolute;
+  right: 0px;
+  margin-right: 10px
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-logo:hover {
+  cursor: pointer;
+}
+
+.nav-item {
+  display: inline;
+  color: white;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 28px;
+  margin-bottom: 0
+}
+
+ul {
+  margin-bottom: 0
+}
+
+.nav-item:hover {
+  color: black;
+  cursor: pointer;
+}
+
+li.nav-item.active{
+  color:white;
+}
+
+.section-dark {
+  background:  #a8aab5;
+  color: white;
+}
+
+.section-light {
+  background: #a8aab5;
+}
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.nav-item > .active {
+  border-bottom: 1px solid #333;
+}
+
+#cardLabel{
+  color: black;
+}
+
+#cardHeader{
+  background-color: rgb(68, 71, 75);
+  color: white;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+#cardBody{
+  font-family: 'Roboto', sans-serif;
+}
+
+#homesection{
+  background-image: url('./Images/mountain-login.jpg');
+  min-height:100vh;
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  position: relative;
+  text-align: center;
+}
+
+#mainBrand{
+  font-family: 'Gruppo', cursive;
+  font-size: 2.5rem;
+  color: white;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0
+}
+
+#quote{
+  color: white;
+  font-size: 60px;
+  text-align: center;
+}
+
+.quotecontainer {
+  background-color:rgba(0,0,0,0.5) !important;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+  height: 110px;
+  width: 500px
+}
+
+#portfolioCard {
+  width: 600px
+}
+
+.rich-editor {
+  border: 1px solid #ccc;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: black;
+}
+
+.workCarousel {
+  height: 700px
+}
+
+.carousel-indicators li {
+  background-color: black;
+}
+
+.carousel-indicators .active {
+  background-color: black;
+}
+
+.siteInfo{
+  display: block;
+  color: white;
+  background-color:rgba(0,0,0,0.5) !important;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+  // position: absolute;
+  bottom: 6rem;
+}
+
+#section1 {
+  margin-top: 30vh
+}
+
+#adminLink {
+  color: white;
+  background-color:rgba(0,0,0,0.5) !important;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+#contactSubmit {
+  background-color: rgb(68, 71, 75);
+  border-color: rgb(68, 71, 75)
+}
+
+
+.navbar-collapse.collapsing,
+.navbar-collapse.show {
+  background-color:rgb(68, 71, 75);
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+  padding-bottom: 5px;
+  margin-top: 60px;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow-x: hidden; 
+  filter: drop-shadow(0 0 10px white);
+}
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+.snow {
+  $total: 200;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+
+  @for $i from 1 through $total {
+    $random-x: random(1000000) * 0.0001vw;
+    $random-offset: random_range(-100000, 100000) * 0.0001vw;
+    $random-x-end: $random-x + $random-offset;
+    $random-x-end-yoyo: $random-x + ($random-offset / 2);
+    $random-yoyo-time: random_range(30000, 80000) / 100000;
+    $random-yoyo-y: $random-yoyo-time * 100vh;
+    $random-scale: random(10000) * 0.0001;
+    $fall-duration: random_range(10, 30) * 1s;
+    $fall-delay: random(30) * -1s;
+
+    &:nth-child(#{$i}) {
+      opacity: random(10000) * 0.0001;
+      transform: translate($random-x, -10px) scale($random-scale);
+      animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+    }
+
+    @keyframes fall-#{$i} {
+      #{percentage($random-yoyo-time)} {
+        transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
+      }
+
+      to {
+        transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+      }
+    }
+  }
+}
+
+
