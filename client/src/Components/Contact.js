@@ -51,7 +51,7 @@ function Contact(props) {
                                     <label id="cardLabel">Email address</label>
                                     <Field type="email" className="form-control" id="email" name="email" placeholder="Email Address" />
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <label id="cardLabel">Message</label>
                                     <Field as="textarea" className="form-control" id="message" name="message" rows="4" placeholder="Type your message" />
                                 </div>
