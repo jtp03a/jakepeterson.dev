@@ -11,9 +11,6 @@ html,body{
   height: 100vh;
   width: 100vw;
   background-color: #a8aab5;
-  // background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  overflow-x: hidden; 
-  // filter: drop-shadow(0 0 10px white);
 }
 
 .nav {
@@ -216,6 +213,10 @@ li.nav-item.active{
   border-style: solid;
   padding-bottom: 5px;
   margin-top: 60px;
+}
+
+body {
+  overflow-x: hidden; 
 }
 
 @function random_range($min, $max) {
