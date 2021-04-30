@@ -90,7 +90,7 @@ function Portfolio(props) {
                                 <div className="container d-flex justify-content-center">
                                     <div className="row ">
                                         <div className="col">
-                                            <img src={homelab} alt="homelab" width="400" rounded />
+                                            <img id="myImg" src={homelab} alt="homelab" width="400" rounded />
                                         </div>
                                     </div>
                                 </div>
