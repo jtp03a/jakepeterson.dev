@@ -226,7 +226,6 @@ function Landing(props) {
       <div class="snow"></div>
       <div class="snow"></div>
       <div class="snow"></div>
-      <div class="snow"></div>
     </div>
   );
 }
