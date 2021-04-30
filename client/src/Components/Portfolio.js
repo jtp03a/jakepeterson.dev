@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
+import homelab from "../Images/homelab.jpg";
 
 function Portfolio(props) {
     return (
@@ -59,6 +60,15 @@ function Portfolio(props) {
                                                 <li className="list-group-item">Mar 2011-Sep 2012 - Linguist Student - USAF</li>
                                                 <li className="list-group-item">Jan 2009-Mar 2011 - Software Engineer<br></br>Hendrick Medical Center, Abilene TX</li>
                                             </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Carousel.Item>
+                            <Carousel.Item className="workCarousel" interval={50000}>
+                                <div className="container d-flex justify-content-center">
+                                    <div className="row ">
+                                        <div className="col">
+                                            <img src={homelab} alt="homelab" width="400" rounded />
                                         </div>
                                     </div>
                                 </div>
