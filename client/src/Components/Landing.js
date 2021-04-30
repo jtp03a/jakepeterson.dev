@@ -12,10 +12,10 @@ function Landing(props) {
             <h2 className="p-2" id="quote">
               I am a Developer
             </h2>
-            <div classname="flex flex-row justify-content-between">
-            <div>Full Stack</div>
-            <div>DevOps</div>
-            <div>Cloud</div>
+            <div classname="d-flex flex-row justify-content-between">
+            <div className="flexItems">Full Stack</div>
+            <div className="flexItems">DevOps</div>
+            <div className="flexItems">Cloud</div>
             </div>
           </div>
         </div>
