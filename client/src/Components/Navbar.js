@@ -78,13 +78,13 @@ function Navbar() {
                     </ul>
                     </div>
                 ) : ("")}
-                <div id="endContent pl-2">
-                    <div className="endItems">
+                <div id="endContent">
+                    <div className="endItems pr-2">
                     <a href="https://github.com/jtp03a"><img  src={GHLogo} /></a>
                     <a className="ml-1" href="https://www.codewars.com/users/jtp03a"><img  src={CWLogo} /></a>
                     </div>
                     {authContext.isAuthenticated() ? (
-                        <div className="endItems">
+                        <div className="endItems pr-2">
                         <div>
                             <RouterLink to='/private' className="btn btn-sm btn-danger mt-2">Admin</RouterLink>
                         </div> 
