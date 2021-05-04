@@ -41,7 +41,7 @@ function Home() {
         id="section5"
       />
       <div className="d-flex justify-content-center">
-        <RouterLink to='/Login' className="pl-1 pr-1 mb-1" id="adminLink">Admin</RouterLink>
+        <RouterLink to='/Login' className="pl-1 pr-1 mb-1 adminLink">Admin</RouterLink>
       </div>
       <div className="siteInfo d-flex flex-column">
         <div className="d-flex justify-content-center pl-1 pr-2 mb-0">

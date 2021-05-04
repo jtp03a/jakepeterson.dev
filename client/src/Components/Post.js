@@ -5,6 +5,7 @@ import draftToHtml from 'draftjs-to-html';
 import DOMPurify from 'dompurify';
 import { publicService } from './../util/public.service';
 import { HomeContext } from '../context/HomeContext'
+import { Link } from 'react-router-dom'
 
 function Post(props) {
     const axiosContext = useContext(AxiosContext);
@@ -45,6 +46,8 @@ function Post(props) {
                     <h2>{post && post.postTitle}</h2>
                     <h5>{post && post.author.firstname + " " + post.author.lastname}</h5>
                     {post && post.date.slice(0, 10)}
+                    <div><Link to={'/'} ><button className='btn btn-danger'>Back</button></Link></div>
+
                 </div>
                 <div className="card-body" >
 
