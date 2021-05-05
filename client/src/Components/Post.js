@@ -46,7 +46,7 @@ function Post(props) {
                     <h2>{post && post.postTitle}</h2>
                     <h5>{post && post.author.firstname + " " + post.author.lastname}</h5>
                     {post && post.date.slice(0, 10)}
-                    <div><Link to={'/'} ><button className='btn btn-danger'>Back</button></Link></div>
+                    <div><Link to={'/'} ><button className='btn btn-danger mt-2'>Back</button></Link></div>
 
                 </div>
                 <div className="card-body" >
