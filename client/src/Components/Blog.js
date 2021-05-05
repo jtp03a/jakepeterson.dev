@@ -13,7 +13,7 @@ function Blog (props) {
 
     const getPosts = async () => {
         try {
-            const { data } = await publicService.get('/posts/');
+            const { data } = await publicService.get('/publicposts/');
             setPosts(data);
         } catch(err) {
             console.log(err)

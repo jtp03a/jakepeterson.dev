@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Contact = require('../models/contact.model');
 const Post = require('../models/post.model');
+const jwtDecode = require("jwt-decode");
+
 
 //Private routes for managing contacts
 router.get('/contacts', async (req, res) => {
@@ -47,8 +49,24 @@ router.get('/posts/all', async (req, res) => {
   });
 
 router.post('/posts', async (req, res) => {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Authentication Invalid" });
+    }
+  
+    const decodedToken = jwtDecode(token);
+  
+    if (!decodedToken) {
+      return res
+        .status(401)
+        .json({ message: "There was a problem authorizing the request" });
+    } else {
+      req.user = decodedToken;
+    }
+    
     const { sub } = req.user;
     try {
+        console.log(sub)
         const newPost = new Post({
             postTitle: req.body.postTitle,
             post: req.body.post,

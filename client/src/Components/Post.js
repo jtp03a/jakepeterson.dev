@@ -21,7 +21,7 @@ function Post(props) {
 
     const getPost = async () => {
         try {
-            const { data } = await axiosContext.authAxios.get('/posts/' + postID);
+            const { data } = await axiosContext.authAxios.get('/publicposts/' + postID);
             setPost(data);
             getImage(data.postImage)
         } catch (err) {

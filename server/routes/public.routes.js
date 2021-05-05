@@ -194,7 +194,7 @@ router.post('/contacts', async (req, res) => {
   }
 })
 
-router.get('/posts', async (req, res) => {
+router.get('/publicposts', async (req, res) => {
   try {
     const foundPosts = await Post.find().sort({ date: 'desc' }).limit(3);
     res.send(foundPosts);
@@ -203,7 +203,7 @@ router.get('/posts', async (req, res) => {
   }
 });
 
-router.get('/posts/:id', async (req, res) => {
+router.get('/publicposts/:id', async (req, res) => {
   try {
     const foundPost = await Post.findOne({
       _id: req.params.id
