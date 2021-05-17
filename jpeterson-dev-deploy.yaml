@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jpeterson-dev
+  name: jpeterson-dev-depl
+  namespace: default
   labels:
     app: jpeterson-dev
 spec:
