@@ -29,14 +29,14 @@ deploy:
     - gcloud config set project $GCP_PROJECT_ID
     - gcloud container clusters get-credentials jakek8s --zone=us-central1-c
     - echo $MONGODB_CONN > dbconn.txt
-    # - kubectl delete secret mongodb-secrets
+    - kubectl delete secret mongodb-secrets -n default
     - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt -n default
     - echo $JWT_SECRET > jwtsecret.txt
-    # - kubectl delete secret jwt-secrets
+    - kubectl delete secret jwt-secrets -n default
     - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt -n default
-    # - kubectl delete secret pexel-secrets
+    - kubectl delete secret pexel-secrets -n default
     - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY -n default
     - kubectl apply -f jpeterson-dev-deploy.yaml
-    - kubectl rollout restart deployment jpeterson-dev -n default
+    - kubectl rollout restart deployment jpeterson-dev-depl -n default
 
 
