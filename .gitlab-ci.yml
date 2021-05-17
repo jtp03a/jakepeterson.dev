@@ -8,6 +8,7 @@ build:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
 
+##For deployment on homelab cluster
 # deploy:
 #   stage: deploy
 #   image:
@@ -15,9 +16,10 @@ build:
 #   script:
 #     - mkdir ~/.kube
 #     - echo $kube_config | base64 -d > ~/.kube/config
-#     - kubectl apply -f ohmyform-deployment.yaml
-#     - kubectl rollout restart deployment ohmyform-depl
+#     - kubectl apply -f jpeterson-dev-deploy.yaml
+#     - kubectl rollout restart deployment jpeterson-dev
 
+#For deployment on GCP cluster
 deploy:
   stage: deploy
   image: google/cloud-sdk
@@ -27,9 +29,12 @@ deploy:
     - gcloud config set project $GCP_PROJECT_ID
     - gcloud container clusters get-credentials jakek8s --zone=us-central1-c
     - echo $MONGODB_CONN > dbconn.txt
+    - kubectl delete secret mongodb-secrets
     - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt
     - echo $JWT_SECRET > jwtsecret.txt
+    - kubectl delete secret jwt-secrets
     - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt
+    - kubectl delete secret pexel-secrets
     - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY
     - kubectl apply -f jpeterson-dev-deploy.yaml
     - kubectl rollout restart deployment jpeterson-dev
