@@ -40,4 +40,14 @@ spec:
       imagePullSecrets:
         - name: regcred
 ---
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: jpdev-svc
+spec:
+  selector:
+    app: jpeterson-dev
+  ports:
+    - protocol: TCP
+      port: 4000  
+      targetPort: 4000
