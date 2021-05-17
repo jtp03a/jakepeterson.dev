@@ -30,6 +30,7 @@ deploy:
     - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt
     - echo $JWT_SECRET > jwtsecret.txt
     - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt
+    - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY
     - kubectl apply -f jpeterson-dev-deploy.yaml
     - kubectl rollout restart deployment jpeterson-dev
 
