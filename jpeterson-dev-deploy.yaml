@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jpeterson-dev
-        image: registry.jakepeterson.dev/jpeterson/jpeterson-dev
+        image: registry.gitlab.com/jtp03a/jpeterson-dev
         env:
         - name: NODE_ENV
           value: "production"
@@ -38,4 +38,4 @@ spec:
         ports:
         - containerPort: 4000
       imagePullSecrets:
-        - name: privreg
+        - name: regcred
