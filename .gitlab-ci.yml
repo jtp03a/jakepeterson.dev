@@ -9,7 +9,7 @@ build:
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
 
 test:
-  stage: container scan
+  stage: test
   image:
     name: docker.io/aquasec/trivy:latest
     entrypoint: [""]
