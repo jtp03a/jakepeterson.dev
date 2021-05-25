@@ -42,6 +42,8 @@ test:
     when:                          always
     reports:
       container_scanning:          gl-container-scanning-report.json
+  tags:
+    - docker-runner
 
 ##For deployment on homelab cluster
 # deploy:
