@@ -7,6 +7,8 @@ build:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+  tags:
+    - kubernetes
 
 test:
   stage: test
@@ -43,7 +45,7 @@ test:
     reports:
       container_scanning:          gl-container-scanning-report.json
   tags:
-    - docker-runner
+    - docker
 
 ##For deployment on homelab cluster
 # deploy:
@@ -75,5 +77,7 @@ deploy:
     - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY -n default
     - kubectl apply -f jpeterson-dev-deploy.yaml
     - kubectl rollout restart deployment jpeterson-dev-depl -n default
+  tags:
+    - kubernetes
 
 
