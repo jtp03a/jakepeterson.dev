@@ -10,7 +10,7 @@ function Landing(props) {
         <div>
           <div className="p-2 rounded quotecontainer">
             <h2 className="p-2" id="quote">
-              I am a Developer
+              I am a Developer.
             </h2>
             <div className="d-flex flex-row justify-content-around">
             <div className="flexItems">Full Stack</div>
