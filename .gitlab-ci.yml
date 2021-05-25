@@ -13,7 +13,7 @@ build:
 test:
   stage: test
   image:
-    name: docker.io/aquasec/trivy:latest
+    name: bitnami/trivy:latest
     entrypoint: [""]
   variables:
     # No need to clone the repo, we exclusively work on artifacts.  See
@@ -34,9 +34,9 @@ test:
     #     --output "$CI_PROJECT_DIR/gl-container-scanning-report.json" "$FULL_IMAGE_NAME"
     - time trivy "$FULL_IMAGE_NAME"
     # Prints full report
-    - time trivy --exit-code 0 --cache-dir .trivycache/ --no-progress "$FULL_IMAGE_NAME"
+    # - time trivy --exit-code 0 --cache-dir .trivycache/ --no-progress "$FULL_IMAGE_NAME"
     # Fail on critical vulnerabilities
-    - time trivy --exit-code 1 --cache-dir .trivycache/ --severity CRITICAL --no-progress "$FULL_IMAGE_NAME"
+    # - time trivy --exit-code 1 --cache-dir .trivycache/ --severity CRITICAL --no-progress "$FULL_IMAGE_NAME"
   cache:
     paths:
       - .trivycache/
