@@ -13,7 +13,7 @@ build:
 test:
   stage: test
   image:
-    name: bitnami/trivy:latest
+    name: registry.gitlab.com/jpeterson-dev/trivy-image
     entrypoint: [""]
   variables:
     # No need to clone the repo, we exclusively work on artifacts.  See
@@ -46,7 +46,7 @@ test:
     reports:
       container_scanning:          gl-container-scanning-report.json
   tags:
-    - docker
+    - kubernetes
 
 ##For deployment on homelab cluster
 # deploy:
