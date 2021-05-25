@@ -3,6 +3,8 @@ workflow:
     - if: '$CI_COMMIT_BRANCH' == $CI_DEFAULT_BRANCH
 
 build:
+  stage: build
+  image: docker:latest
   script:
     - echo "testing"
   
