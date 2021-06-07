@@ -60,11 +60,13 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner
+    - sonar-scanner -Dsonar.qualitygate.wait=true
   only:
     - merge_requests
     - master
     - develop
+  tags:
+    - kubernetes
 
 ##For deployment on homelab cluster
 # deploy:
