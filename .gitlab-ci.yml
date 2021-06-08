@@ -52,8 +52,7 @@ variables:
 #   tags:
 #     - kubernetes
 
-test:
-  stage: test
+unit-test:
   image:
     name: node:alpine
   script:
