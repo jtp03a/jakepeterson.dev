@@ -58,6 +58,7 @@ test:
     name: node:alpine
   script:
     - cd client
+    - npm install
     - npm test
   tags:
     - kubernetes
