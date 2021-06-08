@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --silent --env=jsdom --watchAll=false --coverage --testResultsProcessor jest-sonar-reporter",
+    "test": "react-scripts test --silent --env=jsdom --watchAll=false --forceExit --coverage --testResultsProcessor jest-sonar-reporter",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

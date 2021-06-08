@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="/config/workspace/jpeterson-dev/client/src/__tests__/app.test.js">
-    <testCase name="renders welcome message" duration="283"/>
+    <testCase name="renders welcome message" duration="253"/>
   </file>
 </testExecutions>

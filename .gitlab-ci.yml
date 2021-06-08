@@ -59,26 +59,29 @@ unit-test:
     - cd client
     - npm install
     - npm test
+  artifacts:
+    paths:
+      - client/coverage
   tags:
     - kubernetes
 
-sonarcloud-check:
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script:
-    # - sonar-scanner -Dsonar.qualitygate.wait=true
-    - sonar-scanner
-  only:
-    - merge_requests
-    - master
-    - develop
-  tags:
-    - kubernetes
+# sonarcloud-check:
+#   image:
+#     name: sonarsource/sonar-scanner-cli:latest
+#     entrypoint: [""]
+#   cache:
+#     key: "${CI_JOB_NAME}"
+#     paths:
+#       - .sonar/cache
+#   script:
+#     # - sonar-scanner -Dsonar.qualitygate.wait=true
+#     - sonar-scanner
+#   only:
+#     - merge_requests
+#     - master
+#     - develop
+#   tags:
+#     - kubernetes
 
 ##For deployment on homelab cluster
 # deploy:
