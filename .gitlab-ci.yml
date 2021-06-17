@@ -3,25 +3,27 @@
 #     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 stages:
+  - build
+  - deploy
   # - unit-test
   # - sonarcloud
-  - container-scan
+  # - container-scan
 
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
   
-# build:
-#   stage: build
-#   image:
-#     name: gcr.io/kaniko-project/executor:debug
-#     entrypoint: ['']
-#   script:
-#     - mkdir -p /kaniko/.docker
-#     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-#     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
-#   tags:
-#     - kubernetes
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: ['']
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+  tags:
+    - kubernetes
 
 # unit-test:
 #   stage: unit-test
@@ -56,41 +58,41 @@ variables:
 #   tags:
 #     - kubernetes
 
-container-scan:
-  stage: container-scan
-  image:
-    name: aquasec/trivy:latest
-    entrypoint: [""]
-  variables:
-    # No need to clone the repo, we exclusively work on artifacts.  See
-    # https://docs.gitlab.com/ee/ci/runners/README.html#git-strategy
-    GIT_STRATEGY: none
-    TRIVY_USERNAME: "$CI_REGISTRY_USER"
-    TRIVY_PASSWORD: "$CI_REGISTRY_PASSWORD"
-    TRIVY_AUTH_URL: "$CI_REGISTRY"
-    FULL_IMAGE_NAME: $CI_REGISTRY_IMAGE:latest
-  script:
-    - trivy --version
-    # cache cleanup is needed when scanning images with the same tags, it does not remove the database
-    - time trivy image --clear-cache
-    # update vulnerabilities db
-    - time trivy --download-db-only --no-progress --cache-dir .trivycache/
-    # print report
-    - time trivy --exit-code 0 --cache-dir .trivycache/ --no-progress "$FULL_IMAGE_NAME"
-    # Builds report and puts it in the default workdir $CI_PROJECT_DIR, so `artifacts:` can take it from there
-    - time trivy --exit-code 0 --cache-dir .trivycache/ --output "$CI_PROJECT_DIR/gl-container-scanning-report.json" "$FULL_IMAGE_NAME"
-    # Fail on critical vulnerabilities
-    - time trivy --exit-code 1 --cache-dir .trivycache/ --severity HIGH --no-progress "$FULL_IMAGE_NAME"
-  cache:
-    paths:
-      - .trivycache/
-  # Enables https://docs.gitlab.com/ee/user/application_security/container_scanning/ (Container Scanning report is available on GitLab EE Ultimate or GitLab.com Gold)
-  artifacts:
-    when:                          always
-    reports:
-      container_scanning:          gl-container-scanning-report.json
-  tags:
-    - kubernetes
+# container-scan:
+#   stage: container-scan
+#   image:
+#     name: aquasec/trivy:latest
+#     entrypoint: [""]
+#   variables:
+#     # No need to clone the repo, we exclusively work on artifacts.  See
+#     # https://docs.gitlab.com/ee/ci/runners/README.html#git-strategy
+#     GIT_STRATEGY: none
+#     TRIVY_USERNAME: "$CI_REGISTRY_USER"
+#     TRIVY_PASSWORD: "$CI_REGISTRY_PASSWORD"
+#     TRIVY_AUTH_URL: "$CI_REGISTRY"
+#     FULL_IMAGE_NAME: $CI_REGISTRY_IMAGE:latest
+#   script:
+#     - trivy --version
+#     # cache cleanup is needed when scanning images with the same tags, it does not remove the database
+#     - time trivy image --clear-cache
+#     # update vulnerabilities db
+#     - time trivy --download-db-only --no-progress --cache-dir .trivycache/
+#     # print report
+#     - time trivy --exit-code 0 --cache-dir .trivycache/ --no-progress "$FULL_IMAGE_NAME"
+#     # Builds report and puts it in the default workdir $CI_PROJECT_DIR, so `artifacts:` can take it from there
+#     - time trivy --exit-code 0 --cache-dir .trivycache/ --output "$CI_PROJECT_DIR/gl-container-scanning-report.json" "$FULL_IMAGE_NAME"
+#     # Fail on critical vulnerabilities
+#     - time trivy --exit-code 1 --cache-dir .trivycache/ --severity CRITICAL --no-progress "$FULL_IMAGE_NAME"
+#   cache:
+#     paths:
+#       - .trivycache/
+#   # Enables https://docs.gitlab.com/ee/user/application_security/container_scanning/ (Container Scanning report is available on GitLab EE Ultimate or GitLab.com Gold)
+#   artifacts:
+#     when:                          always
+#     reports:
+#       container_scanning:          gl-container-scanning-report.json
+#   tags:
+#     - kubernetes
 
 ##For deployment on homelab cluster
 # deploy:
@@ -104,25 +106,25 @@ container-scan:
 #     - kubectl rollout restart deployment jpeterson-dev
 
 #For deployment on GCP cluster
-# deploy:
-#   stage: deploy
-#   image: google/cloud-sdk
-#   script:
-#     - echo $GCP_SERVICE_KEY > gcloud-service-key.json
-#     - gcloud auth activate-service-account --key-file gcloud-service-key.json
-#     - gcloud config set project $GCP_PROJECT_ID
-#     - gcloud container clusters get-credentials jakek8s --zone=us-central1-c
-#     # - echo $MONGODB_CONN > dbconn.txt
-#     # - kubectl delete secret mongodb-secrets -n default
-#     # - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt -n default
-#     # - echo $JWT_SECRET > jwtsecret.txt
-#     # - kubectl delete secret jwt-secrets -n default
-#     # - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt -n default
-#     # - kubectl delete secret pexel-secrets -n default
-#     # - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY -n default
-#     - kubectl apply -f jpeterson-dev-deploy.yaml
-#     - kubectl rollout restart deployment jpeterson-dev-depl -n default
-#   tags:
-#     - kubernetes
+deploy:
+  stage: deploy
+  image: google/cloud-sdk
+  script:
+    - echo $GCP_SERVICE_KEY > gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file gcloud-service-key.json
+    - gcloud config set project $GCP_PROJECT_ID
+    - gcloud container clusters get-credentials jakek8s --zone=us-central1-c
+    # - echo $MONGODB_CONN > dbconn.txt
+    # - kubectl delete secret mongodb-secrets -n default
+    # - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt -n default
+    # - echo $JWT_SECRET > jwtsecret.txt
+    # - kubectl delete secret jwt-secrets -n default
+    # - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt -n default
+    # - kubectl delete secret pexel-secrets -n default
+    # - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY -n default
+    - kubectl apply -f jpeterson-dev-deploy.yaml
+    - kubectl rollout restart deployment jpeterson-dev-depl -n default
+  tags:
+    - kubernetes
 
 
