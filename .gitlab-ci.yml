@@ -3,8 +3,9 @@
 #     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 stages:
-  - build
-  - deploy
+  # - build
+  # - deploy
+  - owasp
   # - unit-test
   # - sonarcloud
   # - container-scan
@@ -12,18 +13,24 @@ stages:
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-  
-build:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: ['']
+
+owasp:
+  stage: owasp
+  image: owasp/dependency-check
   script:
-    - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
-  tags:
-    - kubernetes
+    - dependency-check.sh --project "My App Name" --scan "/"
+  
+# build:
+#   stage: build
+#   image:
+#     name: gcr.io/kaniko-project/executor:debug
+#     entrypoint: ['']
+#   script:
+#     - mkdir -p /kaniko/.docker
+#     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+#     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+#   tags:
+#     - kubernetes
 
 # unit-test:
 #   stage: unit-test
@@ -106,25 +113,25 @@ build:
 #     - kubectl rollout restart deployment jpeterson-dev
 
 #For deployment on GCP cluster
-deploy:
-  stage: deploy
-  image: google/cloud-sdk
-  script:
-    - echo $GCP_SERVICE_KEY > gcloud-service-key.json
-    - gcloud auth activate-service-account --key-file gcloud-service-key.json
-    - gcloud config set project $GCP_PROJECT_ID
-    - gcloud container clusters get-credentials jakek8s --zone=us-central1-c
-    # - echo $MONGODB_CONN > dbconn.txt
-    # - kubectl delete secret mongodb-secrets -n default
-    # - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt -n default
-    # - echo $JWT_SECRET > jwtsecret.txt
-    # - kubectl delete secret jwt-secrets -n default
-    # - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt -n default
-    # - kubectl delete secret pexel-secrets -n default
-    # - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY -n default
-    - kubectl apply -f jpeterson-dev-deploy.yaml
-    - kubectl rollout restart deployment jpeterson-dev-depl -n default
-  tags:
-    - kubernetes
+# deploy:
+#   stage: deploy
+#   image: google/cloud-sdk
+#   script:
+#     - echo $GCP_SERVICE_KEY > gcloud-service-key.json
+#     - gcloud auth activate-service-account --key-file gcloud-service-key.json
+#     - gcloud config set project $GCP_PROJECT_ID
+#     - gcloud container clusters get-credentials jakek8s --zone=us-central1-c
+#     # - echo $MONGODB_CONN > dbconn.txt
+#     # - kubectl delete secret mongodb-secrets -n default
+#     # - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt -n default
+#     # - echo $JWT_SECRET > jwtsecret.txt
+#     # - kubectl delete secret jwt-secrets -n default
+#     # - kubectl create secret generic jwt-secrets --from-file=jwt_secret=./jwtsecret.txt -n default
+#     # - kubectl delete secret pexel-secrets -n default
+#     # - kubectl create secret generic pexel-secrets --from-literal=pexel_key=$PEXEL_KEY -n default
+#     - kubectl apply -f jpeterson-dev-deploy.yaml
+#     - kubectl rollout restart deployment jpeterson-dev-depl -n default
+#   tags:
+#     - kubernetes
 
 
