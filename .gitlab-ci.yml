@@ -19,6 +19,8 @@ owasp:
   image: owasp/dependency-check
   script:
     - dependency-check.sh --project "My App Name" --scan "/"
+  tags:
+    - kubernetes
   
 # build:
 #   stage: build
