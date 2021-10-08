@@ -109,6 +109,9 @@ deploy:
   script:
     - mkdir ~/.kube
     - echo $kube_config | base64 -d > ~/.kube/config
+    - echo $MONGODB_CONN > dbconn.txt
+    - kubectl delete secret mongodb-secrets -n default
+    - kubectl create secret generic mongodb-secrets --from-file=mongodb_conn=./dbconn.txt -n default
     - kubectl apply -f jpeterson-dev-deploy.yaml
     - kubectl rollout restart deployment jpeterson-dev-depl
 
