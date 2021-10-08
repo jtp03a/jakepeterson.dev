@@ -46,7 +46,7 @@ function Home() {
       <div className="siteInfo d-flex flex-column">
         <div className="d-flex justify-content-center pl-1 pr-2 mb-0">
           This site is built with the MERN stack, uses Gitlab for CI/CD, and
-          is deployed in a Microk8s cluster
+          is deployed in a self-hosted Microk8s cluster
           </div>
         <div className="d-flex justify-content-center pl-1 pr-2 pb-0 mb-0">
           <p>Background image photo by Eberhard Grossgasteiger from <a href="https://www.pexels.com/photo/mountain-under-starry-sky-1624504/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Pexels</a></p>
