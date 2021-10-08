@@ -110,7 +110,7 @@ deploy:
     - mkdir ~/.kube
     - echo $kube_config | base64 -d > ~/.kube/config
     - kubectl apply -f jpeterson-dev-deploy.yaml
-    - kubectl rollout restart deployment jpeterson-dev
+    - kubectl rollout restart deployment jpeterson-dev-depl
 
 #For deployment on GCP cluster
 # deploy:
