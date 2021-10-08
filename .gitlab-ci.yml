@@ -3,9 +3,9 @@
 #     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 stages:
-  # - build
-  # - deploy
-  - owasp
+  - build
+  - deploy
+  # - owasp
   # - unit-test
   # - sonarcloud
   # - container-scan
@@ -14,25 +14,23 @@ variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 
-owasp:
-  stage: owasp
-  image: owasp/dependency-check
-  script:
-    - dependency-check.sh --project "My App Name" --scan "/"
-  tags:
-    - kubernetes
-  
-# build:
-#   stage: build
-#   image:
-#     name: gcr.io/kaniko-project/executor:debug
-#     entrypoint: ['']
+# owasp:
+#   stage: owasp
+#   image: owasp/dependency-check
 #   script:
-#     - mkdir -p /kaniko/.docker
-#     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-#     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+#     - dependency-check.sh --project "My App Name" --scan "/"
 #   tags:
 #     - kubernetes
+  
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: ['']
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
 
 # unit-test:
 #   stage: unit-test
@@ -104,15 +102,15 @@ owasp:
 #     - kubernetes
 
 ##For deployment on homelab cluster
-# deploy:
-#   stage: deploy
-#   image:
-#     name: jtp03a/kubectl
-#   script:
-#     - mkdir ~/.kube
-#     - echo $kube_config | base64 -d > ~/.kube/config
-#     - kubectl apply -f jpeterson-dev-deploy.yaml
-#     - kubectl rollout restart deployment jpeterson-dev
+deploy:
+  stage: deploy
+  image:
+    name: jtp03a/kubectl
+  script:
+    - mkdir ~/.kube
+    - echo $kube_config | base64 -d > ~/.kube/config
+    - kubectl apply -f jpeterson-dev-deploy.yaml
+    - kubectl rollout restart deployment jpeterson-dev
 
 #For deployment on GCP cluster
 # deploy:
