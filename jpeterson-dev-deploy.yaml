@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: jpeterson-dev
-        image: registry.jakepeterson.dev/jtp03a/jpeterson-dev
+        image: registry.jakepeterson.dev/jtp03a/jpetersondev
         env:
         - name: NODE_ENV
           value: "production"
