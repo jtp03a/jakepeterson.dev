@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jpdev-mongo-depl
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jpdev-mongo
+  template:
+    metadata:
+      labels:
+        app: jpdev-mongo
+    spec:
+      volumes:
+      - name: jpdev-mongo-storage
+        persistentVolumeClaim:
+          claimName: jpdev-mongo
+      containers:
+        - name: jpdev-mongo
+          image: mongo
+          volumeMounts:
+          - name: jpdev-mongo-storage
+            mountPath: /data/db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jpdev-mongo-srv
+  namespace: default
+spec:
+  selector:
+    app: jpdev-mongo
+  ports:
+    - name: jpdev-mongo
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+---      
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jpdev-mongo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

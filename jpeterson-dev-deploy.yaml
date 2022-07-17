@@ -22,7 +22,7 @@ spec:
         - name: NODE_ENV
           value: "production"
         - name: MONGODB_URL
-          value: 'mongodb://jpdev-mongo-mongodb:27017/jpdev'
+          value: 'mongodb://jpdev-mongo-srv:27017/jpdev'
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
