@@ -17,24 +17,21 @@ spec:
     spec:
       containers:
       - name: jpeterson-dev
-        image: registry.jakepeterson.dev/jtp03a/jpetersondev
+        image: registry.jakepeterson.dev/jpetersondev/portfolio
         env:
         - name: NODE_ENV
           value: "production"
         - name: MONGODB_URL
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-secrets
-              key: mongodb_conn
+          value: 'mongodb://jpdev-mongo-mongodb:27017/jpdev'
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: jwt-secrets
+              name: jwt-secret
               key: jwt_secret
         - name: PEXELKEY
           valueFrom:
             secretKeyRef:
-              name: pexel-secrets
+              name: pexel-secret
               key: pexel_key
         ports:
         - containerPort: 4000
