@@ -37,7 +37,7 @@ function Portfolio(props) {
             <Carousel id="pC">
               {/* Add or remove carousel.item blocks depending on how many work items you want to show in this section  */}
               <Carousel.Item className="workCarousel" interval={50000}>
-                <h4>Skills</h4>
+                <h4>Skills/Technologies</h4>
                 <div className="container d-flex justify-content-center">
                   <div className="row ">
                     <div className="col">
@@ -72,25 +72,22 @@ function Portfolio(props) {
                     <div className="col">
                       <ul>
                         <li className="list-group-item">
-                          Kubernetes<br></br>&#9733;&#9733;&#9734;&#9734;&#9734;
+                          Kubernetes<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;
                         </li>
                         <li className="list-group-item">
-                          Docker<br></br>&#9733;&#9733;&#9734;&#9734;&#9734;
+                          Docker<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;
                         </li>
                         <li className="list-group-item">
-                          SonarQube<br></br>&#9733;&#9733;&#9734;&#9734;&#9734;
+                          CI/CD<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;
                         </li>
                         <li className="list-group-item">
                           TDD<br></br>&#9733;&#9733;&#9734;&#9734;&#9734;
                         </li>
                         <li className="list-group-item">
-                          Jira<br></br>&#9733;&#9733;&#9734;&#9734;&#9734;
+                          Python<br></br>&#9733;&#9733;&#9734;&#9734;&#9734;
                         </li>
                         <li className="list-group-item">
-                          Confluence<br></br>&#9733;&#9734;&#9734;&#9734;&#9734;
-                        </li>
-                        <li className="list-group-item">
-                          Scrum<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;
+                          Agile Methodologies<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;
                         </li>
                         <li className="list-group-item">
                           SQL<br></br>&#9733;&#9733;&#9733;&#9734;&#9734;
@@ -107,10 +104,10 @@ function Portfolio(props) {
                     <div className="col">
                       <ul className="list-group">
                         <li className="list-group-item">
-                          July 2020-Jan 2021 - Lead Developer - USAF
+                          Nov 2018-Present - Cybersecurity Operations Program Manager - USAF
                         </li>
                         <li className="list-group-item">
-                          Nov 2018-Present - Cybersecurity Test Lead - USAF
+                          July 2020-Jun 2021 - Lead Developer - USAF
                         </li>
                         <li className="list-group-item">
                           Jan 2018-Nov 2018 - Cybersecurity Student - USAF

@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { Link as RouterLink } from 'react-router-dom';
 import { HomeContext } from '../context/HomeContext'
 import GHLogo from '../Images/GitHubLogo.png'
-import CWLogo from '../Images/codewars.png'
+import LILogo from '../Images/linkedin.png'
 
 function Navbar() {
     const authContext = useContext(AuthContext);
@@ -81,7 +81,7 @@ function Navbar() {
                 <div id="endContent">
                     <div className="endItems pr-2">
                     <a href="https://github.com/jtp03a"><img  src={GHLogo} /></a>
-                    <a className="ml-1" href="https://www.codewars.com/users/jtp03a"><img  src={CWLogo} /></a>
+                    <a className="ml-1" href="https://www.linkedin.com/in/jtp03a"><img  src={LILogo} /></a>
                     </div>
                     {authContext.isAuthenticated() ? (
                         <div className="endItems pr-2">

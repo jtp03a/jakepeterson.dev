@@ -3,7 +3,7 @@ import portrait from "../Images/portrait.jpg";
 
 function About(props) {
     return (
-        <div className="section section-light" >
+        <div className="section section-light shadow" >
             <div className="section-content" id={props.id}>
                 <div className='card'>
                     <div id="cardHeader" className='card-header'>
