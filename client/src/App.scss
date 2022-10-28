@@ -10,6 +10,11 @@ html,body{
   height: 100vh;
   width: 100vw;
   background-color: #a8aab5;
+  overflow-x: hidden; 
+}
+
+body {
+  position: relative
 }
 
 .nav {
@@ -228,10 +233,6 @@ li.nav-item.active{
   border-style: solid;
   padding-bottom: 5px;
   margin-top: 60px;
-}
-
-body {
-  overflow-x: hidden; 
 }
 
 @function random_range($min, $max) {
